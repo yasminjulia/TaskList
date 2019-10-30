@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }
         try{
             FileInputStream is = new FileInputStream(file);
-            BufferedWriter reader = new BufferedWriter(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader( new InputStreamReader(is));
             String line = reader.readLine();
             while (line != null){
                 lix.add(line);
@@ -147,12 +148,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-           final LayoutInflater inflater = (LayoutInflater)
-                    MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View rowView = inflater.inflate(R.layout.item, parent, false);
-            final TextView textView = rowView.findViewById(R.id.task);
-            textView.setText(list.get(position));
-            return rowView;
+            if(convertView==null){
+                LayoutInflater inflater = (LayoutInflater)
+                        MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View rowView = inflater.inflate(R.layout.item, parent, false);
+            }
+            final TextView textView = convertView.findViewById(R.id.task);
+            textView.setText(lix.get(position));
+            return convertView;
         }
     }
 }
