@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TaskList</string>
+    <string name="nova_tarefa">Nova tarefa</string>
 </resources>

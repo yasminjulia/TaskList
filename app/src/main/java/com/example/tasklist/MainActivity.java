@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 lix.remove(position);
                                 adapter.setData(lix);
+                                salvarInfo();
                             }
                         })
                         .setNegativeButton("Não", null)
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 lix.add(taskInput.getText().toString());
                                 adapter.setData(lix);
+                                salvarInfo();
                             }
                         })
                         .setNegativeButton("Cancelar", null)
@@ -84,10 +86,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    protected void pausado(){
-        super.onPause();
-        salvarInfo();
-    }
+
     private void salvarInfo() {
         try {
             File file = new File(this.getFilesDir(), "Salvo");
