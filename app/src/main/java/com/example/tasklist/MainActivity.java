@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -148,11 +149,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if(convertView==null){
+
                 LayoutInflater inflater = (LayoutInflater)
                         MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View rowView = inflater.inflate(R.layout.item, parent, false);
+               convertView = inflater.inflate(R.layout.item, parent, false);
             }
-            final TextView textView = convertView.findViewById(R.id.task);
+            CheckedTextView textView = (CheckedTextView) convertView.findViewById(R.id.task);
             textView.setText(lix.get(position));
             return convertView;
         }
